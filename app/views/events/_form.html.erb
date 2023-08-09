@@ -1,0 +1,18 @@
+<%=form_with model: event do |form| %>
+ <ul>
+  <% event.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+  <div>
+    <%=form.label :title, "Title:" %><br>
+    <%=form.text_field :title%>
+  </div>
+  <div>
+    <%=form.label :description, "Description:" %><br>
+    <%=form.text_area :description, size: "70x5" %>
+  </div>
+  <div>
+    <%=form.submit %>
+  </div>
+<%end%>
