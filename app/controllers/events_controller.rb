@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, :except => [:index]
   def index
     @event = Event.all
   end
@@ -8,10 +9,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = current_user.events.new(event_params)
     if @event.save
+      flash[:notice] = 'Event added!'
       redirect_to root_path
     else
+      flash[:error] = 'Failed to create event!'
       render :new, status: :unprocessable_entity
     end
   end
