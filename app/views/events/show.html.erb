@@ -1,4 +1,9 @@
 <h1><%= @event.title %></h1>
 
 <p><%= @event.description %></p>
+<div> List of attendees:
+  <% @event.attendee.each do |attendee|%>
+  <li><%= attendee.username %></li>
+  <%end%>
+</div>
 <%= link_to "Join event", join_events_path(event_id: @event.id), data: { turbo_method: :post } %>
