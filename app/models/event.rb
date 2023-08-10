@@ -3,4 +3,6 @@ class Event < ApplicationRecord
   validates :title, uniqueness: true
 
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
+  has_many :attendances
+  has_many :attendees, through: :attendances
 end
