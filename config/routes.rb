@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :events
+  resources :attendances, only: [:create], as: 'join_events'
+  resources :attendances, only: [:destroy], as: 'leave_event'
   root "events#index"
 end
